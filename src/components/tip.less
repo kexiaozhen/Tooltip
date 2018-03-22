@@ -1,0 +1,118 @@
+@backColor: black;
+
+.guagua-tip {
+	position: absolute;
+	padding: 4px;
+  opacity: 0.9;
+	color: #fff;
+	z-index: 9999;
+  background-color: @backColor;
+  
+  &-top{
+    margin-top: -9px;
+    &:before {
+    	.top-triangle;
+    	bottom: -9px;
+	    left: 50%;
+		  margin-left: -7px;
+    }
+
+  }
+
+  &-bottom {
+    margin-top: 9px;
+    &:before {
+    	.bottom-triangle;
+    	left: 50%;
+		  margin-left: -7px;
+	    top: -9px;
+    }
+  }
+
+  &-left {
+    margin-left: -8px;
+     &:before {
+    	.left-triangle;
+    	left: 100%;
+    	top: 50%;
+		  margin-top: -9px;
+    }
+  }
+
+  &-right {
+    margin-left: 9px;
+     &:before {
+    	.right-triangle;
+    	left: -8px;
+    	top: 50%;
+		  margin-top: -9px;
+    }
+  }
+
+  &-bottomRight {
+    margin-top: 9px;
+    &:before {
+    	.bottom-triangle;
+	    top: -9px;
+	    right: 3px;
+    }
+  }
+
+  &-bottomLeft {
+    margin-top: 9px;
+    &:before {
+    	.bottom-triangle;
+	    top: -9px;
+    }
+  }
+  
+  &-topLeft {
+    margin-top: -9px;
+    &:before {
+    	.top-triangle;
+	    bottom: -9px;
+    }
+  }
+
+  &-topRight {
+    margin-top: -9px;
+    &:before {
+    	.top-triangle;
+      bottom: -9px;
+	    right: 3px;
+    }
+  }
+
+}
+
+.top-triangle {
+	content: '';
+  position: absolute;
+	border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 9px solid @backColor;
+}
+
+.bottom-triangle {
+	content: '';
+  position: absolute;
+	border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 9px solid @backColor;
+}
+
+.left-triangle {
+	content: '';
+  position: absolute;
+	border-left: 9px solid @backColor;
+  border-bottom: 7px solid transparent;
+  border-top: 7px solid transparent;
+}
+
+.right-triangle {
+	content: '';
+  position: absolute;
+	border-right: 9px solid @backColor;
+  border-bottom: 7px solid transparent;
+  border-top: 7px solid transparent;
+}
