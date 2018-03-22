@@ -1,51 +1,24 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+## This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## cnpm i
-## cnpm start
+## start
+ cnpm i
+ cnpm start
 
-#Usage
 
-# react-tooltip
+# tooltip
 react tooltip component
 
-# Screenshot
-![image](https://github.com/yongbingz/react-tooltip/blob/master/demo/screenshot/1.png)
-
 # Usage
-Actual directory of tooltip components in the import project, You may use it like this:
 
 ```
-import Tooltip from '../src/Tooltip'
 
-const style = {
-  width: 180
-}
-<Tooltip 
-  style={style}
-  placement='bottom'
-  content={ <div>实际乘坐：上海航空FM9317<br/>请按实际乘坐航班办理值机。</div> }
->
-  <a href="javascript:;">下</a>
+import Tooltip from './components/tooltip';
+
+<Tooltip overlay="我是鼠标滑过出现，鼠标移出消失的提示框" pos="top">
+  <div className="test-1">提示框在正上方显示，鼠标滑过我试试吧！</div>
 </Tooltip>
 
 ```
-
-Or
-
-```
-import Tooltip from '../src/Tooltip'
-
-<Tooltip 
-  placement='bottomLeft'
-  content='hello world!'
-  arrow = { false }         //不显示箭头
-  distance= { 10 }          //tooltip 与触发元素之间的距离
->
-  <a href="javascript:;">下左</a>
-</Tooltip>
-
-```
-
 
 # API
 Tooltip props
@@ -60,58 +33,52 @@ Tooltip props
     </thead>
     <tbody>
         <tr>
-          <td>placement</td>
+          <td>overlay</td>
           <td>String</td>
-          <td>bottomLeft</td>
-          <td>tooltip placement location</td>
+          <td>0.1</td>
+          <td>提示文字/td>
+        </tr>
+        <tr>
+          <td>pos</td>
+          <td>String</td>
+          <td>bottomRight</td>
+          <td>出现位置</td>
         </tr>
         <tr>
           <td>style</td>
           <td>Object</td>
           <td></td>
-          <td>tooltip's style, e.g. { zIndex:10000, width:300, height:100 }</td>
+          <td>tooltip's style</td>
         </tr>
         <tr>
-          <td>wrapClassName</td>
+          <td>className</td>
           <td>String</td>
           <td></td>
-          <td>tooltip's wrap custom className</td>
+          <td>tooltip's className</td>
         </tr>
         <tr>
-          <td>arrow</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>Whether to display tooltip's arrow</td>
+          <td>trigger</td>
+          <td>String</td>
+          <td>'hover'</td>
+          <td>包括‘hover’和‘click’</td>
         </tr>
          <tr>
-          <td>distance</td>
+          <td>delay</td>
           <td>Number</td>
-          <td>5</td>
-          <td>The distance between tooltip and the trigger element</td>
+          <td>0.1</td>
+          <td>鼠标移除后延迟多久消失</td>
         </tr>
         <tr>
-          <td>content</td>
-          <td>React.element || String</td>
-          <td></td>
-          <td>Custom tooltip's content </td>
+          <td>autoDisappear</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>点击后是否定时消失</td>
         </tr>
         <tr>
           <td>mouseEnterDelay</td>
           <td>Number</td>
-          <td>0</td>
-          <td>Delay how many seconds visible</td>
-        </tr>
-        <tr>
-          <td>mouseLeaveDelay</td>
-          <td>Number</td>
-          <td>0.1</td>
-          <td>Delay how many seconds is not visible</td>
+          <td>1</td>
+          <td>点击后定时多久消失</td>
         </tr>
     </tbody>
 </table>
-
-# Latest version
-1.0.0
-
-# License
-MIT
