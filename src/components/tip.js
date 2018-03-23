@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './tip.less';
 
-let tooltipDom = null;
 
 class Tip extends Component {
-
-  componentDidMount() {
-    tooltipDom = ReactDOM.findDOMNode(this.refs.tooltipDom);
-  }
 
   shouldComponentUpdate({ visible }){
     return !!(this.props.visible || visible)
@@ -16,10 +10,9 @@ class Tip extends Component {
 
   render() {
     const { visible, className, overlay, style, pos } = this.props;
-
     
     let wrapStyle = {};
-    wrapStyle.display = visible ? 'block' : 'none';
+    wrapStyle.opacity = visible ? 1 : 0;  // 设置display属性会导致当为none的时候，计算不到他的size
    
 
     let classCancat = className ? `guagua-tip ${className}` : 'guagua-tip';
@@ -34,9 +27,5 @@ class Tip extends Component {
     );
   }
 }
-
-export { 
-  tooltipDom,
-};
 
 export default Tip;

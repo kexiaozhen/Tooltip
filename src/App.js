@@ -51,13 +51,13 @@ class App extends Component {
           </div>
 
           <div className="tooltip-test-area">
-            <Tooltip overlay="我可以自定义弹窗样式哦" pos="bottomLeft">
+            <Tooltip overlay="当窗口足够大时，我是单行；当位置不够时，我是多行展示" pos="bottomLeft">
               <div className="test-1">提示框在左下方显示，鼠标滑过我试试吧！</div>
             </Tooltip>
           </div>
 
           <div className="tooltip-test-area">
-            <Tooltip overlay="新功能API开发中" pos="topRight">
+            <Tooltip overlay="窗口变化时，我的位置随着他改变" pos="topRight">
               <div className="test-1">提示框在右上方显示，鼠标滑过我试试吧！</div>
             </Tooltip>
           </div>

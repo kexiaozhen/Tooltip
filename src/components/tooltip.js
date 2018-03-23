@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Tip, { tooltipDom } from './tip';
+import Tip from './tip';
 import Place from './place.js';
 /**
  * Tooltip提示
@@ -66,30 +66,31 @@ class Trigger extends Component {
 
   componentDidMount() {
 		this.domName = ReactDOM.findDOMNode(this.refs.tooltipElement); // 该dom节点
-     
-    // 监听窗口变化，当窗口变化时，需要重新设置提示框的位置
-    // window.addEventListener('resize', this.onWindowResize);
+
+		// 当点击出现文字且设置不自动消失，这时候需要监听窗口变化来重新给他定位置
+		window.addEventListener('resize', this.onWindowResize);
   }
 
-  // onWindowResize = () => {
-  // 	console.log(22222222222);
-  // 	this.placement(this.domName, tooltipDom);
-  // }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize)
+	}
 
-  // componentWillUnmount() {
-  // 	window.removeEventListener('resize', this.onWindowResize);
-  // }
+	onWindowResize = (e) => {
+    const { autoDisappear, trigger } = this.props;
+    if(trigger === 'click' && !autoDisappear && !this.flag) {
+    	this.placement(this.domName, this.wrap.firstElementChild);
+    }
+   }
 
   handleMouseEnter = (e) => {
     e.stopPropagation();
 		e.preventDefault();
 	  this.visible = true;
 
-		this.createElement();
-		if (!this.initPlacement) { // 只需要初始时需要得到位置
-			this.placement(this.domName, tooltipDom);
-		}
+ 		this.createElement();
+		this.placement(this.domName, this.wrap.firstElementChild); // 更新位置
   }
+
 
   handleMouseLeave = (e) => {
 		e.stopPropagation();
@@ -102,6 +103,7 @@ class Trigger extends Component {
 			that.createElement();
 		}, delay * 1000);
   }
+
   
   handleClick = (e) => { // 当提示框出现时，再次点击消失，由flag标记, true表示点击出现
   	const that = this;
@@ -110,13 +112,11 @@ class Trigger extends Component {
 	    that.flag = false;
 	    that.visible = true;
 	    that.createElement();
+			that.placement(that.domName, this.wrap.firstElementChild);
 
-			if (!that.initPlacement) { // 只需要初始时需要得到位置
-				that.placement(that.domName, tooltipDom);
-			}
 			if (autoDisappear) {
 		    setTimeout(function() {
-		    	that.handleClickDisappear()
+		    	that.handleClickDisappear();
 		    }, clickDelay * 1000);
         that.flag = true;
 			}
@@ -153,12 +153,6 @@ class Trigger extends Component {
     new Place({domName, tooltipDom, pos});
 		this.initPlacement = true;
 	}
-
-	// 删除tooltip节点
-	// deleteElement() {
-	// 	const dom = document.getElementById('onlyOneElement');
-	// 	document.body.removeChild(dom);
-	// }
 
 
   render() {
